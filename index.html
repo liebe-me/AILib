@@ -4,8 +4,277 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>정왕고 인공지능 기초 과목</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+    
+    <!-- CSS 스타일 -->
+    <style>
+      :root {
+        color-scheme: dark;
+        color: #111827;
+        background: #f8fafc;
+        font-family: 'Noto Sans KR', system-ui, sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
+
+      body {
+        background: #f8fafc;
+        color: #111827;
+      }
+
+      img,
+      svg {
+        max-width: 100%;
+      }
+
+      button,
+      a {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        backdrop-filter: blur(10px);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+
+      .logo {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .menu-toggle {
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        border-radius: 0.75rem;
+        background: #ffffff;
+        padding: 0.75rem 1rem;
+        display: none;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .main-nav a {
+        color: #0f172a;
+        font-weight: 500;
+      }
+
+      .hero {
+        padding: 5rem 0 3rem;
+        background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+
+      .hero-content {
+        max-width: 640px;
+      }
+
+      .eyebrow {
+        margin: 0 0 1rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #2563eb;
+      }
+
+      .hero h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1.05;
+      }
+
+      .hero p {
+        margin: 0 0 1.85rem;
+        color: #334155;
+        font-size: 1.05rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.95rem 1.5rem;
+        border-radius: 999px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .primary {
+        background: #2563eb;
+        color: #fff;
+      }
+
+      .secondary {
+        background: #e2e8f0;
+        color: #0f172a;
+      }
+
+      .section-heading {
+        margin-bottom: 1.5rem;
+      }
+
+      .section-label {
+        display: inline-flex;
+        margin-bottom: 0.75rem;
+        padding: 0.35rem 0.85rem;
+        border-radius: 999px;
+        background: #e0f2fe;
+        color: #0c4a6e;
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-size: clamp(1.75rem, 2vw, 2.6rem);
+        line-height: 1.1;
+      }
+
+      .info-section,
+      .concept-section,
+      .examples-section,
+      .projects-section,
+      .contact-section {
+        padding: 4rem 0;
+      }
+
+      .cards,
+      .concept-grid,
+      .examples-grid,
+      .project-list,
+      .contact-cards {
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      .cards {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .card,
+      .concept-card,
+      .example-card,
+      .project-item,
+      .contact-card {
+        padding: 1.5rem;
+        border-radius: 1.25rem;
+        background: #ffffff;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.05);
+      }
+
+      .card h3,
+      .concept-card h3,
+      .example-card h3,
+      .project-item h3,
+      .contact-card h3 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        font-size: 1.15rem;
+      }
+
+      .concept-grid,
+      .examples-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .examples-grid {
+        align-items: stretch;
+      }
+
+      .project-list,
+      .contact-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .project-item,
+      .contact-card {
+        min-height: 220px;
+      }
+
+      .site-footer {
+        padding: 2rem 0;
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      @media (max-width: 900px) {
+        .header-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .main-nav {
+          flex-wrap: wrap;
+          gap: 0.75rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding-top: 3.5rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="page-container" color="black">
@@ -45,7 +314,7 @@
           </div>
         </section>
 
-       <section class="section-block">
+        <section class="section-block">
           <div class="section-row">
             <div class="section-badge">■ 2단원</div>
             <div class="section-divider"></div>
@@ -65,5 +334,19 @@
         </section>
       </main>
     </div>
+
+    <!-- JavaScript 스크립트 -->
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+          const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          menuToggle.setAttribute('aria-expanded', String(!expanded));
+          mainNav.classList.toggle('nav-open');
+        });
+      }
+    </script>
   </body>
 </html>
