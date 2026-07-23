@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인공지능 관련 기술의 역사</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #494b63;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 상단 네비게이션 바 */
+    header {
+      width: 100%;
+      background-color: #212338;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 0;
+    }
+
+    .tab-container {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #a0a5b8;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tab.active {
+      background-color: #6e6e85;
+      color: #ffffff;
+    }
+
+    /* 메인 컨테이너 */
+    main {
+      width: 100%;
+      max-width: 860px;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 중앙 상단 타이틀 섹션 */
+    .title-section {
+      text-align: center;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .icon-badge {
+      width: 56px;
+      height: 56px;
+      background-color: #2f3046;
+      border-radius: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .title-section h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .title-section p {
+      color: #c0bdd3;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* 메인 카드 */
+    .card {
+      width: 100%;
+      background-color: #33354a;
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card-header:first-child {
+      margin-top: 0;
+    }
+
+    /* 클릭 가능한 양방향 버튼 스타일 */
+    .card-icon-circle {
+      width: 36px;
+      height: 36px;
+      background-color: #52536b;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .card-icon-circle:hover {
+      background-color: #6c6d8a;
+      transform: scale(1.08);
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    /* 정답 내역 상자 (기본 숨김 -> 클릭 시 표시) */
+    .inner-box {
+      background-color: #262739;
+      border-radius: 12px;
+      padding: 0px 24px;
+      color: #d8d8e5;
+      font-size: 15px;
+      line-height: 1.6;
+      display: none; /* 기본 숨김 */
+      margin-bottom: 20px;
+      border-left: 4px solid #a29bfe;
+    }
+
+    .inner-box.show {
+      display: block;
+      padding: 16px 24px;
+    }
+
+    .inner-box strong {
+      color: #a29bfe;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    /* 모바일 대응 반응형 */
+    @media (max-width: 640px) {
+      .card-title {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 헤더 -->
+  <header>
+    <div class="tab-container">
+      <div class="tab active">
+        <!-- 책 아이콘 -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        이론 학습
+      </div>
+    </div> 
+  </header>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <main>
+    <!-- 중앙 타이틀 -->
+    <section class="title-section">
+      <div class="icon-badge">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a29bfe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="16" height="4" rx="1"></rect>
+          <rect x="4" y="18" width="16" height="4" rx="1"></rect>
+          <line x1="12" y1="6" x2="12" y2="18"></line>
+          <circle cx="12" cy="10" r="1.5" fill="#a29bfe"></circle>
+        </svg>
+      </div>
+      <h1>인공지능 관련 기술의 역사</h1>
+      <h2>버튼(🔄)을 누르면 정답과 해설을 확인할 수 있습니다.</h2>
+    </section>
+
+    <!-- 퀴즈 목록 카드 -->
+    <section class="card">
+
+      <!-- Q1 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q1. [인물/용어] 1950년 논문 『컴퓨팅 기계와 지능』에서 기계에 지능이 있는지를 판단하기 위한 테스트를 제안한 인물은 누구일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q2 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q2. [기술] 신경망과 딥러닝의 가장 기본 단위로, 프랭크 로젠블랫에 의해 처음 만들어진 것은 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q3 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q3. [역사] '인공지능(Artificial Intelligence)'이라는 용어가 최초로 공식 사용된 회의의 이름은 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q4 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q4. [제품/인공지능] 1966년에 개발된 초기 심리 상담 대화형 프로그램의 이름은 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q5 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q5. [기술] 다층 퍼셉트론을 학습시키는 핵심 알고리즘으로, 인공 신경망이 기계학습의 중심에 서게 만든 기술은 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q6 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q6. [제품/인공지능] 1997년 세계 체스 챔피언과의 대결에서 승리한 컴퓨터 인공지능의 이름은 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q7 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q7. [기술] 결정트리(Decision Tree)의 단점을 극복하기 위해 여러 개의 트리를 활용하여 결과를 예측하는 앙상블 모델은 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q8 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q8. [기술] 이안 굿펠로우가 제안한 기술로, '생성자'와 '판별자'가 경쟁하며 실제와 유사한 이미지를 만들어내는 인공지능 기술은 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q9 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q9. [제품/인공지능] 2011년 미국 제퍼디 퀴즈쇼에 참가하여 인간 챔피언들을 제치고 우승을 차지한 인공지능 시스템은 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+      <!-- Q10 -->
+      <div class="card-header">
+        <div class="card-icon-circle" title="정답 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 5h18"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 19H3"></path>
+          </svg>
+        </div>
+        <h4 class="card-title">Q10. [기술/제품] BERT, GPT와 같은 대형 언어 모델(LLM)의 기반이 되는 구조로, 인코더와 디코더 구조를 통해 자연어 처리 분야에 큰 진전을 가져온 신경망 구조는 무엇일까요?</h4>
+      </div>
+      <div class="inner-box"></div>
+
+    </section>
+  </main>
+
+  <script>
+    // 정답 데이터 정의
+    const quizData = [
+      {
+        answer: "앨런 튜링 (튜링 테스트)",
+        explanation: "앨런 튜링은 기계의 지능 존재 여부를 판별하기 위해 '튜링 테스트'를 제안했습니다."
+      },
+      {
+        answer: "퍼셉트론 (Perceptron)",
+        explanation: "퍼셉트론은 입력값과 가중치를 곱해 활성화 함수를 거치는 인공 신경망의 가장 기초적인 단위입니다."
+      },
+      {
+        answer: "다트머스 회의 (1956년)",
+        explanation: "1956년 다트머스 회의에서 최초로 '인공지능'이라는 용어가 공식 등장했습니다."
+      },
+      {
+        answer: "엘리자 (ELIZA)",
+        explanation: "엘리자는 인간과 자연어로 대화하는 초기 대화형 심리 상담 프로그램입니다."
+      },
+      {
+        answer: "역전파 알고리즘 (Backpropagation)",
+        explanation: "1986년에 등장한 역전파 알고리즘을 통해 다층 신경망 학습이 가능해졌습니다."
+      },
+      {
+        answer: "딥블루 (Deep Blue)",
+        explanation: "IBM에서 개발한 딥블루는 인간 세계 체스 챔피언을 꺾어 큰 화제를 모았습니다."
+      },
+      {
+        answer: "랜덤 포레스트 (Random Forest)",
+        explanation: "2001년에 등장한 랜덤 포레스트는 여러 결정트리의 결과를 다수결이나 평균으로 종합하는 앙상블 알고리즘입니다."
+      },
+      {
+        answer: "생성적 적대 신경망 (GAN)",
+        explanation: "GAN(Generative Adversarial Network)은 진짜 같은 가짜 데이터를 만들어내는 대표적인 생성형 모델입니다."
+      },
+      {
+        answer: "왓슨 (Watson)",
+        explanation: "IBM의 왓슨은 문장으로 된 질문을 이해하고 답하는 자연어 처리 인공지능 시스템입니다."
+      },
+      {
+        answer: "트랜스포머 (Transformer)",
+        explanation: "2017년에 등장한 트랜스포머 구조는 현대 대형 언어 모델(GPT 시리즈 등)의 핵심 기반 기술입니다."
+      }
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".card-icon-circle");
+      const innerBoxes = document.querySelectorAll(".inner-box");
+
+      buttons.forEach((btn, index) => {
+        // inner-box에 미리 정답 텍스트 바인딩
+        const targetBox = innerBoxes[index];
+        const data = quizData[index];
+
+        targetBox.innerHTML = `
+          <strong>정답: ${data.answer}</strong>
+          <div>해설: ${data.explanation}</div>
+        `;
+
+        // 버튼 클릭 시 정답 박스 토글
+        btn.addEventListener("click", () => {
+          targetBox.classList.toggle("show");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
