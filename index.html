@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>정왕고 인공지능 기초 과목</title>
-    
-    <!-- CSS 스타일 -->
+
+    <!-- Noto Sans KR 폰트 불러오기 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- 통합 CSS 스타일 -->
     <style>
       :root {
         color-scheme: dark;
@@ -22,8 +27,7 @@
         box-sizing: border-box;
       }
 
-      html,
-      body {
+      html, body {
         margin: 0;
         padding: 0;
         min-height: 100%;
@@ -34,13 +38,11 @@
         color: #111827;
       }
 
-      img,
-      svg {
+      img, svg {
         max-width: 100%;
       }
 
-      button,
-      a {
+      button, a {
         font: inherit;
       }
 
@@ -49,11 +51,7 @@
         text-decoration: none;
       }
 
-      .container {
-        width: min(1120px, calc(100% - 2rem));
-        margin: 0 auto;
-      }
-
+      /* 헤더 영역 */
       .site-header {
         position: sticky;
         top: 0;
@@ -64,6 +62,8 @@
       }
 
       .header-inner {
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -71,213 +71,163 @@
         padding: 1rem 0;
       }
 
-      .logo {
+      .site-title {
         font-size: 1.1rem;
         font-weight: 700;
+        color: #0f172a;
+      }
+
+      .site-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #64748b;
+      }
+
+      .site-meta strong {
+        color: #2563eb;
+      }
+
+      .site-meta .divider {
+        color: #cbd5e1;
       }
 
       .menu-toggle {
         border: 1px solid rgba(15, 23, 42, 0.12);
         border-radius: 0.75rem;
         background: #ffffff;
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 0.85rem;
+        cursor: pointer;
         display: none;
       }
 
-      .main-nav {
+      /* 레이아웃 & 본문 */
+      .content-wrapper {
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 2rem 0 4rem;
+      }
+
+      /* 히어로 배너 */
+      .hero-banner {
+        padding: 3.5rem 2rem;
+        margin-bottom: 3rem;
+        background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+      }
+
+      .hero-banner h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        line-height: 1.2;
+        color: #0f172a;
+      }
+
+      .hero-banner p {
+        margin: 0;
+        color: #475569;
+        font-size: 1.1rem;
+      }
+
+      /* 단원 블록 & 헤더 */
+      .section-block {
+        margin-bottom: 3rem;
+      }
+
+      .section-row {
         display: flex;
         align-items: center;
-        gap: 1.25rem;
-      }
-
-      .main-nav a {
-        color: #0f172a;
-        font-weight: 500;
-      }
-
-      .hero {
-        padding: 5rem 0 3rem;
-        background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
-      }
-
-      .hero-content {
-        max-width: 640px;
-      }
-
-      .eyebrow {
-        margin: 0 0 1rem;
-        font-size: 0.95rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: #2563eb;
-      }
-
-      .hero h1 {
-        margin: 0 0 1rem;
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        line-height: 1.05;
-      }
-
-      .hero p {
-        margin: 0 0 1.85rem;
-        color: #334155;
-        font-size: 1.05rem;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
         gap: 1rem;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.95rem 1.5rem;
-        border-radius: 999px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .button:hover {
-        transform: translateY(-1px);
-      }
-
-      .primary {
-        background: #2563eb;
-        color: #fff;
-      }
-
-      .secondary {
-        background: #e2e8f0;
-        color: #0f172a;
-      }
-
-      .section-heading {
         margin-bottom: 1.5rem;
       }
 
-      .section-label {
+      .section-badge {
         display: inline-flex;
-        margin-bottom: 0.75rem;
         padding: 0.35rem 0.85rem;
         border-radius: 999px;
         background: #e0f2fe;
         color: #0c4a6e;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         font-weight: 700;
       }
 
-      .section-heading h2 {
-        margin: 0;
-        font-size: clamp(1.75rem, 2vw, 2.6rem);
-        line-height: 1.1;
+      .section-divider {
+        flex: 1;
+        height: 1px;
+        background: rgba(15, 23, 42, 0.08);
       }
 
-      .info-section,
-      .concept-section,
-      .examples-section,
-      .projects-section,
-      .contact-section {
-        padding: 4rem 0;
-      }
-
-      .cards,
-      .concept-grid,
-      .examples-grid,
-      .project-list,
-      .contact-cards {
+      /* 카드 그리드 레이아웃 */
+      .card-grid {
         display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 1.25rem;
       }
 
-      .cards {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      }
-
-      .card,
-      .concept-card,
-      .example-card,
-      .project-item,
-      .contact-card {
-        padding: 1.5rem;
+      .content-card {
+        padding: 1.75rem;
         border-radius: 1.25rem;
         background: #ffffff;
-        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.05);
-      }
-
-      .card h3,
-      .concept-card h3,
-      .example-card h3,
-      .project-item h3,
-      .contact-card h3 {
-        margin-top: 0;
-        margin-bottom: 0.75rem;
-        font-size: 1.15rem;
-      }
-
-      .concept-grid,
-      .examples-grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      }
-
-      .examples-grid {
-        align-items: stretch;
-      }
-
-      .project-list,
-      .contact-cards {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      }
-
-      .project-item,
-      .contact-card {
-        min-height: 220px;
-      }
-
-      .site-footer {
-        padding: 2rem 0;
-        background: #0f172a;
-        color: #e2e8f0;
-      }
-
-      .footer-inner {
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+        border: 1px solid rgba(15, 23, 42, 0.05);
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 0.75rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
-      @media (max-width: 900px) {
+      .content-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+      }
+
+      .card-tag {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #2563eb;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .content-card h2 {
+        margin: 0 0 1.5rem;
+        font-size: 1.3rem;
+        color: #0f172a;
+        word-break: keep-all;
+      }
+
+      .content-card a {
+        display: inline-flex;
+        align-items: center;
+        font-weight: 600;
+        color: #2563eb;
+        transition: color 0.2s ease;
+      }
+
+      .content-card a:hover {
+        color: #1d4ed8;
+      }
+
+      /* 반응형 스타일 */
+      @media (max-width: 640px) {
         .header-inner {
           flex-direction: column;
           align-items: flex-start;
+          gap: 0.5rem;
         }
 
-        .main-nav {
-          flex-wrap: wrap;
-          gap: 0.75rem;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .hero {
-          padding-top: 3.5rem;
-        }
-
-        .hero-actions {
-          flex-direction: column;
-        }
-
-        .footer-inner {
-          flex-direction: column;
+        .hero-banner {
+          padding: 2rem 1.25rem;
         }
       }
     </style>
   </head>
   <body>
-    <div class="page-container" color="black">
+    <div class="page-container">
+      <!-- 상단 헤더 -->
       <header class="site-header">
         <div class="header-inner">
           <div class="site-title">정왕고 인공지능 기초 과목</div>
@@ -286,15 +236,18 @@
             <span class="divider">|</span>
             <span>총 방문자 <strong id="totalVisitors">0</strong></span>
           </div>
+          <button class="menu-toggle" aria-expanded="false" aria-label="메뉴 열기">메뉴</button>
         </div>
       </header>
 
+      <!-- 메인 콘텐츠 영역 -->
       <main class="content-wrapper">
         <section class="hero-banner">
           <h1>정왕고 인공지능 기초 과목 웹 보조자료</h1>
           <p>단원별 학습 자료를 확인하세요</p>
         </section>
 
+        <!-- 1단원 섹션 -->
         <section class="section-block">
           <div class="section-row">
             <div class="section-badge">■ 1단원</div>
@@ -302,18 +255,23 @@
           </div>
           <div class="card-grid">
             <article class="content-card">
-              <div class="card-tag">1단원</div>
-              <h2>인공지능의 원리</h2>
+              <div>
+                <div class="card-tag">1단원</div>
+                <h2>인공지능의 원리</h2>
+              </div>
               <a href="one.html">바로가기 →</a>
             </article>
             <article class="content-card">
-              <div class="card-tag">1단원</div>
-              <h2>인공지능과 탐색</h2>
+              <div>
+                <div class="card-tag">1단원</div>
+                <h2>인공지능과 탐색</h2>
+              </div>
               <a href="#">바로가기 →</a>
             </article>
           </div>
         </section>
 
+        <!-- 2단원 섹션 -->
         <section class="section-block">
           <div class="section-row">
             <div class="section-badge">■ 2단원</div>
@@ -321,13 +279,17 @@
           </div>
           <div class="card-grid">
             <article class="content-card">
-              <div class="card-tag">2단원</div>
-              <h2>기계학습과 데이터</h2>
+              <div>
+                <div class="card-tag">2단원</div>
+                <h2>기계학습과 데이터</h2>
+              </div>
               <a href="#">바로가기 →</a>
             </article>
             <article class="content-card">
-              <div class="card-tag">2단원</div>
-              <h2>기계학습 알고리즘</h2>
+              <div>
+                <div class="card-tag">2단원</div>
+                <h2>기계학습 알고리즘</h2>
+              </div>
               <a href="#">바로가기 →</a>
             </article>
           </div>
@@ -335,18 +297,55 @@
       </main>
     </div>
 
-    <!-- JavaScript 스크립트 -->
+    <!-- 통합 JavaScript -->
     <script>
-      const menuToggle = document.querySelector('.menu-toggle');
-      const mainNav = document.querySelector('.main-nav');
+      document.addEventListener('DOMContentLoaded', () => {
+        // 1. 메뉴 토글 버튼 동작
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
 
-      if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', () => {
-          const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-          menuToggle.setAttribute('aria-expanded', String(!expanded));
-          mainNav.classList.toggle('nav-open');
-        });
-      }
+        if (menuToggle) {
+          menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!expanded));
+            if (mainNav) {
+              mainNav.classList.toggle('nav-open');
+            }
+          });
+        }
+
+        // 2. 방문자 수 카운팅 로직 (localStorage 활용)
+        const todayElement = document.getElementById('todayVisitors');
+        const totalElement = document.getElementById('totalVisitors');
+
+        if (todayElement && totalElement) {
+          const todayDate = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD' 형식
+
+          // 저장된 값 불러오기
+          let lastVisitDate = localStorage.getItem('lastVisitDate');
+          let todayCount = parseInt(localStorage.getItem('todayVisitors') || '0', 10);
+          let totalCount = parseInt(localStorage.getItem('totalVisitors') || '0', 10);
+
+          // 날짜 비교 (날짜가 바뀌었으면 오늘 방문자 수 초기화)
+          if (lastVisitDate !== todayDate) {
+            todayCount = 1;
+            localStorage.setItem('lastVisitDate', todayDate);
+          } else {
+            todayCount += 1;
+          }
+
+          // 총 방문자 수 증가
+          totalCount += 1;
+
+          // 로컬 스토리지에 업데이트 저장
+          localStorage.setItem('todayVisitors', todayCount);
+          localStorage.setItem('totalVisitors', totalCount);
+
+          // 화면에 3자리 단위 쉼표(,) 추가하여 출력
+          todayElement.textContent = todayCount.toLocaleString();
+          totalElement.textContent = totalCount.toLocaleString();
+        }
+      });
     </script>
   </body>
 </html>
